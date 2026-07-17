@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Clock, Eye, MessageSquare, ChevronRight } from 'lucide-react';
 import './TutorialCard.css';
 
-const TutorialCard = ({ title, description, category, readTime, views, date, author }) => {
+const TutorialCard = ({ id, title, description, category, readTime, views, date, author }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className="tutorial-card glass">
+    <div className="tutorial-card glass" onClick={() => navigate(`/tutorial/${id}`)}>
       <div className="card-header">
         <span className="card-category">{category}</span>
         <span className="card-date">{date}</span>
