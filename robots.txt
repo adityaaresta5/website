@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://adityaaresta5.github.io/website/sitemap.xml
