@@ -115,6 +115,8 @@
   max-width: 500px;
   border-radius: var(--radius-images);
   background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   overflow: hidden;
   /* subtle transform, no shadows */

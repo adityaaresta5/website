@@ -82,6 +82,8 @@
   padding: 1rem 1.5rem;
   border-radius: var(--radius-cards);
   background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   margin-bottom: 3rem;
   display: inline-flex;
@@ -218,6 +220,8 @@
   border: 1px solid var(--border-color);
   margin: 1.5rem 0;
   background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   overflow: hidden;
   max-width: 100%;
 }

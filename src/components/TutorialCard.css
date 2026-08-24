@@ -2,6 +2,8 @@
   padding: 1.5rem;
   border-radius: var(--radius-cards);
   background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
