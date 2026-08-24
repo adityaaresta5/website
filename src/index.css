@@ -45,6 +45,7 @@
 }
 
 [data-theme='light'] {
+  --bg-main: var(--color-whiteout);
   --bg-surface: rgba(255, 255, 255, 0.6);
   --bg-surface-hover: rgba(0, 0, 0, 0.05);
   --text-primary: var(--color-ink);
@@ -67,7 +68,7 @@ body {
   font-family: var(--font-primary);
   font-weight: 500;
   background-color: var(--bg-main);
-  background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=2070&auto=format&fit=crop');
+  background-image: url('https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=2070&auto=format&fit=crop'); /* Beautiful Sunset for Dark Mode */
   background-size: cover;
   background-position: center calc(var(--scroll-y, 0px) * -0.3);
   background-attachment: fixed;
@@ -77,6 +78,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
   transition: color var(--transition-normal);
+}
+
+[data-theme='light'] body {
+  background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop'); /* Beautiful Sunrise/Morning for Light Mode */
 }
 
 /* Dimmer overlay for text readability */
@@ -90,7 +95,7 @@ body::before {
 }
 
 [data-theme='light'] body::before {
-  background: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.85) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.75) 100%);
 }
 
 h1, h2, h3, h4, h5, h6 {
