@@ -165,9 +165,16 @@ const TutorialDetail = () => {
     const resolveAndListen = async () => {
       try {
         let docRef = doc(db, 'tutorials', id);
-        let docSnap = await getDoc(docRef);
+        let docSnap = null;
+        try {
+          docSnap = await getDoc(docRef);
+        } catch (getDocErr) {
+          // Firebase rules might throw permission-denied if the ID doesn't exist and the user is logged out,
+          // because rules evaluation fails on a null resource. We must catch this to allow the slug fallback.
+          console.log('getDoc failed (likely permission denied on non-existent ID), falling back to slug query.');
+        }
         
-        if (!docSnap.exists()) {
+        if (!docSnap || !docSnap.exists()) {
           const { collection, query, where, getDocs } = await import('firebase/firestore');
           
           // To bypass Firestore security rules for unauthenticated users, we must include the 'status' == 'published' constraint
@@ -215,11 +222,13 @@ const TutorialDetail = () => {
           }
           setLoading(false);
         }, (err) => {
-          console.error('Snapshot error:', err);
+          console.error('Snapshot error (possibly unpublished):', err);
+          setTutorial(null);
           setLoading(false);
         });
       } catch (err) {
         console.error('Failed to resolve tutorial:', err);
+        setTutorial(null);
         setLoading(false);
       }
     };
