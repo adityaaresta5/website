@@ -18,8 +18,8 @@ export function useScrollReveal(dependencies = []) {
 
     const intersectionObserver = new IntersectionObserver(observerCallback, {
       root: null,
-      rootMargin: '0px',
-      threshold: 0.1
+      rootMargin: '20px', // Trigger slightly before or exactly as it enters
+      threshold: 0
     });
 
     const observeElements = () => {
