@@ -163,10 +163,34 @@
   color: inherit !important;
 }
 
-.markdown-content ul, .markdown-content ol {
+.markdown-content ul {
   margin-bottom: 1.5rem;
   padding-left: 2rem;
   color: var(--text-secondary);
+  list-style: disc;
+}
+
+.markdown-content ol {
+  margin-bottom: 1.5rem;
+  padding-left: 2rem;
+  color: var(--text-secondary);
+  list-style: decimal;
+}
+
+.markdown-content ul ul,
+.markdown-content ul ol,
+.markdown-content ol ul,
+.markdown-content ol ol {
+  margin-bottom: 0;
+  margin-top: 0.5rem;
+}
+
+.markdown-content ul ul {
+  list-style: circle;
+}
+
+.markdown-content ul ul ul {
+  list-style: square;
 }
 
 .markdown-content li {
