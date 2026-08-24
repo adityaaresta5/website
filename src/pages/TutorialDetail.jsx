@@ -158,6 +158,8 @@ const TutorialDetail = () => {
   }, []);
 
   useEffect(() => {
+    if (authLoading) return; // Tunggu sampai status auth selesai diperiksa
+    
     let unsubscribe = null;
     
     const resolveAndListen = async () => {
@@ -167,15 +169,36 @@ const TutorialDetail = () => {
         
         if (!docSnap.exists()) {
           const { collection, query, where, getDocs } = await import('firebase/firestore');
-          const q = query(collection(db, 'tutorials'), where('slug', '==', id));
-          const querySnap = await getDocs(q);
+          
+          // To bypass Firestore security rules for unauthenticated users, we must include the 'status' == 'published' constraint
+          let q = query(collection(db, 'tutorials'), where('slug', '==', id), where('status', '==', 'published'));
+          let querySnap = await getDocs(q);
           
           if (!querySnap.empty) {
             docRef = doc(db, 'tutorials', querySnap.docs[0].id);
           } else {
-            setTutorial(null);
-            setLoading(false);
-            return;
+            // Fallback for authenticated users trying to view their own drafts
+            if (auth.currentUser) {
+              const qDraft = query(collection(db, 'tutorials'), where('slug', '==', id), where('userId', '==', auth.currentUser.uid));
+              try {
+                const querySnapDraft = await getDocs(qDraft);
+                if (!querySnapDraft.empty) {
+                  docRef = doc(db, 'tutorials', querySnapDraft.docs[0].id);
+                } else {
+                  setTutorial(null);
+                  setLoading(false);
+                  return;
+                }
+              } catch (e) {
+                setTutorial(null);
+                setLoading(false);
+                return;
+              }
+            } else {
+              setTutorial(null);
+              setLoading(false);
+              return;
+            }
           }
         }
         
@@ -206,7 +229,7 @@ const TutorialDetail = () => {
     return () => {
       if (unsubscribe) unsubscribe();
     };
-  }, [id]);
+  }, [id, authLoading]); // Added authLoading to dependencies
 
   useEffect(() => {
     if (tutorial) {
