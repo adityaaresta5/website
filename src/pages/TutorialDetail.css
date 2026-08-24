@@ -118,6 +118,33 @@
   color: var(--text-secondary);
 }
 
+/* Reset inline styles from pasted content strictly on typography elements to preserve code blocks */
+.markdown-content p *,
+.markdown-content h1 *,
+.markdown-content h2 *,
+.markdown-content h3 *,
+.markdown-content h4 *,
+.markdown-content li * {
+  font-family: inherit !important;
+}
+
+/* Only reset font-size on spans to prevent messing up header sizes */
+.markdown-content p span,
+.markdown-content li span {
+  font-size: inherit !important;
+}
+
+/* Strip unwanted background colors and force inheritance on text colors, 
+   except for code blocks and links */
+.markdown-content p :not(code):not(a),
+.markdown-content li :not(code):not(a),
+.markdown-content h1 :not(code):not(a),
+.markdown-content h2 :not(code):not(a),
+.markdown-content h3 :not(code):not(a) {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
 .markdown-content ul, .markdown-content ol {
   margin-bottom: 1.5rem;
   padding-left: 2rem;
@@ -163,11 +190,40 @@
 }
 
 .code-block {
-  border-radius: var(--radius-md) !important;
-  border: 1px solid var(--border-color) !important;
-  margin: 1.5rem 0 !important;
-  box-shadow: var(--shadow-md) !important;
+  border-radius: 0 0 var(--radius-md) var(--radius-md) !important;
+  border-top: none !important;
+  max-width: 100%;
+  overflow-x: auto !important;
 }
+
+.mac-window {
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-md);
+  background: var(--bg-surface);
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.mac-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: var(--bg-surface-hover);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.mac-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.mac-btn.close { background-color: #ff5f56; }
+.mac-btn.minimize { background-color: #ffbd2e; }
+.mac-btn.maximize { background-color: #27c93f; }
 
 .loading-state {
   text-align: center;
@@ -179,5 +235,20 @@
 @media (max-width: 768px) {
   .detail-title {
     font-size: 2rem;
+  }
+  
+  .mac-header {
+    padding: 10px 12px;
+  }
+  
+  .markdown-content {
+    font-size: 1rem;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  }
+  
+  .detail-meta {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }

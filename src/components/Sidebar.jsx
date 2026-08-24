@@ -1,17 +1,21 @@
 import React from 'react';
-import { BookOpen, Code, Server, Shield, Database, Layout } from 'lucide-react';
+import { BookOpen, Code, Server, Shield, Database, Layout, Terminal } from 'lucide-react';
 import './Sidebar.css';
 
-const categories = [
-  { name: 'All Topics', icon: <BookOpen size={18} />, active: true },
-  { name: 'Web Development', icon: <Layout size={18} /> },
-  { name: 'Backend & API', icon: <Code size={18} /> },
-  { name: 'DevOps & Cloud', icon: <Server size={18} /> },
-  { name: 'Database', icon: <Database size={18} /> },
-  { name: 'Cybersecurity', icon: <Shield size={18} /> },
-];
+const getCategoryIcon = (name) => {
+  const lower = name.toLowerCase();
+  if (lower.includes('web')) return <Layout size={18} />;
+  if (lower.includes('api') || lower.includes('backend')) return <Code size={18} />;
+  if (lower.includes('cloud') || lower.includes('devops')) return <Server size={18} />;
+  if (lower.includes('data')) return <Database size={18} />;
+  if (lower.includes('cyber') || lower.includes('security')) return <Shield size={18} />;
+  if (lower.includes('linux') || lower.includes('system')) return <Terminal size={18} />;
+  return <BookOpen size={18} />;
+};
 
-const Sidebar = () => {
+const popularTags = ['React', 'Next.js', 'Docker', 'Kubernetes', 'Nginx', 'Node.js', 'Python', 'Go'];
+
+const Sidebar = ({ categories = [], currentCategory, currentTag, onSelectCategory, onSelectTag }) => {
   return (
     <aside className="sidebar">
       <div className="sidebar-section">
@@ -19,9 +23,12 @@ const Sidebar = () => {
         <ul className="category-list">
           {categories.map((cat, idx) => (
             <li key={idx}>
-              <button className={`category-btn ${cat.active ? 'active' : ''}`}>
-                {cat.icon}
-                <span>{cat.name}</span>
+              <button 
+                className={`category-btn ${currentCategory === cat ? 'active' : ''}`}
+                onClick={() => onSelectCategory(cat)}
+              >
+                {getCategoryIcon(cat)}
+                <span>{cat}</span>
               </button>
             </li>
           ))}
@@ -31,8 +38,24 @@ const Sidebar = () => {
       <div className="sidebar-section mt-4">
         <h3 className="sidebar-title">Popular Tags</h3>
         <div className="tag-cloud">
-          {['React', 'Next.js', 'Docker', 'Kubernetes', 'Nginx', 'Node.js', 'Python', 'Go'].map((tag, idx) => (
-            <span key={idx} className="tag">{tag}</span>
+          {popularTags.map((tag, idx) => (
+            <button 
+              key={idx} 
+              className={`tag ${currentTag === tag ? 'active-tag' : ''}`}
+              onClick={() => onSelectTag(tag)}
+              style={{
+                background: currentTag === tag ? 'var(--accent-primary)' : 'transparent',
+                color: currentTag === tag ? 'white' : 'var(--text-secondary)',
+                border: currentTag === tag ? '1px solid var(--accent-primary)' : '1px solid var(--border-color)',
+                padding: '0.4rem 0.8rem',
+                borderRadius: 'var(--radius-full)',
+                fontSize: '0.8rem',
+                cursor: 'pointer',
+                transition: 'all var(--transition-fast)'
+              }}
+            >
+              {tag}
+            </button>
           ))}
         </div>
       </div>

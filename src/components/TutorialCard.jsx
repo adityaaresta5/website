@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { Clock, Eye, MessageSquare, ChevronRight } from 'lucide-react';
 import './TutorialCard.css';
 
-const TutorialCard = ({ id, title, description, category, readTime, views, date, author }) => {
+const TutorialCard = ({ id, slug, title, description, category, readTime, views, date, author, tags, index = 0 }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="tutorial-card glass" onClick={() => navigate(`/tutorial/${id}`)}>
+    <div 
+      className="tutorial-card glass" 
+      onClick={() => navigate(`/tutorial/${slug || id}`)}
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
       <div className="card-header">
         <span className="card-category">{category}</span>
         <span className="card-date">{date}</span>
@@ -15,6 +19,23 @@ const TutorialCard = ({ id, title, description, category, readTime, views, date,
       
       <h2 className="card-title">{title}</h2>
       <p className="card-description">{description}</p>
+      
+      {tags && tags.length > 0 && (
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginBottom: '16px' }}>
+          {tags.map((tag, i) => (
+            <span key={i} style={{ 
+              fontSize: '11px', 
+              padding: '2px 8px', 
+              background: 'var(--bg-main)', 
+              border: '1px solid var(--border-color)', 
+              borderRadius: '12px',
+              color: 'var(--text-secondary)'
+            }}>
+              #{tag}
+            </span>
+          ))}
+        </div>
+      )}
       
       <div className="card-footer">
         <div className="card-author">
