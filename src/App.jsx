@@ -11,6 +11,17 @@ import { useScrollReveal } from './hooks/useScrollReveal';
 
 function ScrollRevealWrapper() {
   useScrollReveal();
+  
+  React.useEffect(() => {
+    const handleScroll = () => {
+      // Set CSS variable for parallax background
+      document.body.style.setProperty('--scroll-y', `${window.scrollY}px`);
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return null;
 }
 

@@ -56,11 +56,10 @@
 }
 
 .detail-title {
-  font-family: var(--font-display);
-  font-size: 3.5rem;
-  font-weight: 900;
-  line-height: 0.9;
-  text-transform: uppercase;
+  font-family: var(--font-primary);
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.1;
   letter-spacing: -0.01em;
   margin-bottom: 1rem;
   color: var(--text-primary);
@@ -68,7 +67,7 @@
 
 .detail-description {
   font-family: var(--font-primary);
-  font-size: 1.15rem;
+  font-size: 1.25rem;
   font-weight: 400;
   color: var(--text-secondary);
   line-height: 1.6;
@@ -106,33 +105,35 @@
 .markdown-content {
   color: var(--text-primary);
   font-family: var(--font-primary);
-  font-size: 16px;
-  line-height: 1.5;
+  font-size: 1.125rem; /* Increased size to 18px */
+  line-height: 1.8; /* Increased line-height for elegance */
   padding-bottom: 5rem;
+  letter-spacing: 0.01em;
 }
 
 .markdown-content h2 {
-  font-family: var(--font-display);
+  font-family: var(--font-primary);
   font-size: 2rem;
-  text-transform: uppercase;
-  margin-top: 3rem;
-  margin-bottom: 1rem;
+  font-weight: 700;
+  margin-top: 3.5rem;
+  margin-bottom: 1.5rem;
   padding-bottom: 0.5rem;
   border-bottom: 1px solid var(--border-color);
-  font-weight: 900;
   letter-spacing: -0.01em;
 }
 
 .markdown-content h3 {
-  font-size: 1.4rem;
-  font-weight: 500;
-  margin-top: 2rem;
+  font-family: var(--font-primary);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-top: 2.5rem;
   margin-bottom: 1rem;
 }
 
 .markdown-content p {
   margin-bottom: 1.5rem;
   color: var(--text-secondary);
+  font-size: 1.125rem;
 }
 
 /* Reset inline styles from pasted content strictly on typography elements to preserve code blocks */

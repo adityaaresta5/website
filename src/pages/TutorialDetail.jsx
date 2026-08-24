@@ -260,7 +260,21 @@ const TutorialDetail = () => {
             </div>
           </div>
           
-          <h1 className="detail-title">{tutorial.title}</h1>
+          <h1 className="detail-title">
+            {(() => {
+              const text = tutorial.title;
+              if (!text) return null;
+              const words = text.split(' ');
+              if (words.length <= 1) return text;
+              const lastWord = words.pop();
+              const restOfTitle = words.join(' ');
+              return (
+                <>
+                  {restOfTitle} <span className="card-title-cursive">{lastWord}</span>
+                </>
+              );
+            })()}
+          </h1>
           <p className="detail-description">{tutorial.description}</p>
           
           <div className="author-box">
