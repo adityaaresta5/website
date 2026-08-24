@@ -8,9 +8,9 @@ const TutorialCard = ({ id, slug, title, description, category, readTime, views,
 
   return (
     <div 
-      className="tutorial-card glass" 
+      className="tutorial-card reveal" 
       onClick={() => navigate(`/tutorial/${slug || id}`)}
-      style={{ animationDelay: `${index * 0.1}s` }}
+      style={{ transitionDelay: `${index * 0.05}s` }}
     >
       <div className="card-header">
         <span className="card-category">{category}</span>
@@ -26,10 +26,10 @@ const TutorialCard = ({ id, slug, title, description, category, readTime, views,
             <span key={i} style={{ 
               fontSize: '11px', 
               padding: '2px 8px', 
-              background: 'var(--bg-main)', 
+              background: 'transparent', 
               border: '1px solid var(--border-color)', 
-              borderRadius: '12px',
-              color: 'var(--text-secondary)'
+              borderRadius: 'var(--radius-inputs)',
+              color: 'var(--color-signal-blue)'
             }}>
               #{tag}
             </span>

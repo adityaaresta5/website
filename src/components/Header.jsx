@@ -38,27 +38,26 @@ const Header = () => {
   };
 
   return (
-    <header className="header glass">
-      <div className="header-container">
+    <header className="header reveal">
+      <div className="header-container reveal reveal-delay-1">
         <Link to="/" className="logo" style={{ textDecoration: 'none', color: 'inherit', display: 'flex', alignItems: 'center', gap: '10px' }}>
           <div style={{
             width: '32px', height: '32px', 
-            background: 'linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))',
-            borderRadius: '8px',
+            background: 'var(--text-primary)',
+            borderRadius: 'var(--radius-buttons)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            color: 'white',
-            boxShadow: '0 4px 12px var(--accent-glow)'
+            color: 'var(--bg-main)',
           }}>
-            <Code2 size={20} />
+            <Code2 size={18} strokeWidth={2.5} />
           </div>
-          <span style={{ fontSize: '1.25rem', fontWeight: 800 }}>DevDocs</span>
+          <span style={{ fontSize: '1.25rem', fontWeight: 600, letterSpacing: '-0.02em' }}>DevDocs</span>
         </Link>
 
         <div className="search-bar">
           <Search className="search-icon" size={18} />
           <input 
             type="text" 
-            placeholder="Search documentation, tutorials, API..." 
+            placeholder="Search documentation..." 
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             onKeyDown={handleSearch}
@@ -76,10 +75,10 @@ const Header = () => {
           <button 
             onClick={toggleTheme} 
             className="btn btn-secondary" 
-            style={{ padding: '0.5rem', borderRadius: '50%' }}
+            style={{ padding: '0.5rem', borderRadius: 'var(--radius-buttons)' }}
             title="Toggle Light/Dark Mode"
           >
-            {isDarkMode ? <Sun size={20} /> : <Moon size={20} />}
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
           <div className="divider"></div>
           {user ? (

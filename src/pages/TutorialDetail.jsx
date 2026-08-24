@@ -24,7 +24,7 @@ const CodeBlockWithCopy = ({ children, language, isDarkMode }) => {
   };
 
   return (
-    <div className="mac-window">
+    <div className="mac-window reveal">
       <div className="mac-header">
         <div style={{display: 'flex', gap: '8px'}}>
           <div className="mac-btn close"></div>
@@ -54,7 +54,7 @@ const CodeBlockWithCopy = ({ children, language, isDarkMode }) => {
         language={language}
         style={isDarkMode ? vscDarkPlus : vs}
         className="code-block"
-        customStyle={{ margin: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0, backgroundColor: isDarkMode ? '#1e1e1e' : '#ffffff' }}
+        customStyle={{ margin: 0, borderTopLeftRadius: 0, borderTopRightRadius: 0, backgroundColor: isDarkMode ? 'var(--bg-main)' : 'var(--bg-main)' }}
       />
     </div>
   );
@@ -75,14 +75,11 @@ const CustomZoomContent = ({ buttonUnzoom, img }) => {
     }
 
     try {
-      // Ubah source gambar (base64/url) menjadi Blob untuk memaksa browser mengunduh
       let res;
       try {
         res = await fetch(src);
         if (!res.ok) throw new Error("Network response was not ok");
       } catch (fetchErr) {
-        // Jika fetch langsung gagal (biasanya karena terblokir CORS dari website luar),
-        // kita gunakan Image Proxy (wsrv.nl) yang khusus untuk menangani gambar web
         const proxyUrl = `https://wsrv.nl/?url=${encodeURIComponent(src)}`;
         res = await fetch(proxyUrl);
       }
@@ -169,7 +166,6 @@ const TutorialDetail = () => {
         let docSnap = await getDoc(docRef);
         
         if (!docSnap.exists()) {
-          // Fallback: cari berdasarkan slug
           const { collection, query, where, getDocs } = await import('firebase/firestore');
           const q = query(collection(db, 'tutorials'), where('slug', '==', id));
           const querySnap = await getDocs(q);
@@ -183,14 +179,12 @@ const TutorialDetail = () => {
           }
         }
         
-        // Pasang realtime listener pada referensi dokumen yang tepat
         unsubscribe = onSnapshot(docRef, (snap) => {
           if (snap.exists()) {
             const data = snap.data();
-            // Auto-redirect: Jika URL saat ini adalah ID acak, tapi artikel punya slug, alihkan ke URL slug
             if (id === snap.id && data.slug) {
               navigate(`/tutorial/${data.slug}`, { replace: true });
-              return; // Biarkan useEffect baru yang menangani load datanya
+              return;
             }
             setTutorial({ id: snap.id, ...data });
           } else {
@@ -218,7 +212,6 @@ const TutorialDetail = () => {
     if (tutorial) {
       document.title = `${tutorial.title} | DevDocs`;
       
-      // Update meta tags for SEO dynamically
       let metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc && tutorial.description) {
         metaDesc.setAttribute('content', tutorial.description);
@@ -236,7 +229,6 @@ const TutorialDetail = () => {
   }
 
   const isOwner = user && tutorial && tutorial.userId === user.uid;
-  // Jika tutorial adalah draft, pastikan yang melihat adalah pemilik aslinya
   if (!tutorial || (tutorial.status === 'draft' && !isOwner)) {
     return (
       <div className="main-content">
@@ -254,7 +246,7 @@ const TutorialDetail = () => {
     <main className="main-content tutorial-detail-page">
       <div className="content-area detail-container">
         
-        <div className="detail-header">
+        <div className="detail-header reveal">
           <Link to="/" className="back-link">
             <ArrowLeft size={16} /> Back to Tutorials
           </Link>
@@ -271,7 +263,7 @@ const TutorialDetail = () => {
           <h1 className="detail-title">{tutorial.title}</h1>
           <p className="detail-description">{tutorial.description}</p>
           
-          <div className="author-box glass">
+          <div className="author-box">
             <div className="author-avatar-lg">{tutorial.author ? tutorial.author.charAt(0) : 'A'}</div>
             <div>
               <div style={{ fontWeight: 600, color: 'var(--text-primary)' }}>{tutorial.author}</div>
@@ -280,7 +272,7 @@ const TutorialDetail = () => {
           </div>
         </div>
 
-        <div className="markdown-content">
+        <div className="markdown-content reveal reveal-delay-2">
           {tutorial.content?.trim().startsWith('<') ? (
             parse(tutorial.content, {
               replace: (domNode) => {
@@ -291,7 +283,7 @@ const TutorialDetail = () => {
                       <img 
                         {...props} 
                         style={{ 
-                          borderRadius: 'var(--radius-sm)', 
+                          borderRadius: 'var(--radius-images)', 
                           maxWidth: '100%',
                           height: 'auto',
                           ...props.style,
@@ -341,7 +333,7 @@ const TutorialDetail = () => {
                         style={{ 
                           maxWidth: '100%', 
                           height: 'auto', 
-                          borderRadius: 'var(--radius-sm)', 
+                          borderRadius: 'var(--radius-images)', 
                           ...props.style
                         }} 
                       />

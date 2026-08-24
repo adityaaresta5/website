@@ -7,6 +7,12 @@ import Login from './pages/Login';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminEditor from './pages/AdminEditor';
 import { ThemeProvider } from './context/ThemeContext';
+import { useScrollReveal } from './hooks/useScrollReveal';
+
+function ScrollRevealWrapper() {
+  useScrollReveal();
+  return null;
+}
 
 function App() {
   const basePath = import.meta.env.BASE_URL;
@@ -14,6 +20,7 @@ function App() {
   return (
     <ThemeProvider>
       <Router basename={basePath}>
+        <ScrollRevealWrapper />
         <div className="app-container">
           <Header />
           

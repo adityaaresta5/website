@@ -6,31 +6,24 @@ import './Hero.css';
 const Hero = () => {
   return (
     <section className="hero">
-      {/* Animated Background Particles */}
-      <div className="particles-container">
-        {[...Array(15)].map((_, i) => (
-          <div key={i} className={`particle particle-${i}`}></div>
-        ))}
-      </div>
-      
       <div className="hero-content">
-        <div className="hero-badge">
-          <span>New</span>
+        <div className="hero-badge reveal reveal-delay-1">
+          <span className="badge-pill">New</span>
           <p>React 19 tutorials are now available</p>
           <ArrowRight size={14} />
         </div>
         
-        <h1 className="hero-title">
-          Build faster with <br />
-          <span className="text-gradient">modern documentation</span>
+        <h1 className="hero-title reveal reveal-delay-2">
+          MAKE IT ONCE. <br />
+          <span className="cursive-accent">real</span> DOCUMENTATION
         </h1>
         
-        <p className="hero-description">
+        <p className="hero-description reveal reveal-delay-3">
           Explore our comprehensive IT tutorials and documentation. 
           Learn best practices for web development, cloud infrastructure, and software engineering.
         </p>
         
-        <div className="hero-actions">
+        <div className="hero-actions reveal reveal-delay-3">
           <a href="#tutorials" className="btn btn-primary btn-lg" style={{textDecoration: 'none'}}>
             Start Learning <ArrowRight size={18} />
           </a>
@@ -40,10 +33,7 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="hero-visual">
-        <div className="glow-orb"></div>
-        
-        {/* Lottie Animation behind/beside the code window */}
+      <div className="hero-visual reveal-zoom">
         <div className="lottie-container">
           <Player
             autoplay
@@ -61,7 +51,7 @@ const Hero = () => {
           />
         </div>
 
-        <div className="code-window glass">
+        <div className="code-window">
           <div className="window-header">
             <div className="dot red"></div>
             <div className="dot yellow"></div>

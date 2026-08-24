@@ -1,73 +1,20 @@
 .tutorial-card {
   padding: 1.5rem;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-cards);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
   position: relative;
   overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: all var(--transition-fast);
   cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 100%;
-  animation: fade-in-up 0.6s ease-out forwards;
-  opacity: 0;
-  transform: translateY(20px);
-  z-index: 1;
-}
-
-@keyframes fade-in-up {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Glass reflection effect */
-.tutorial-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: -100%; width: 50%; height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
-  transform: skewX(-25deg);
-  transition: 0.7s;
-  z-index: 0;
-}
-
-/* Glowing gradient border on hover */
-.tutorial-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: var(--radius-md);
-  padding: 2px;
-  background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), #ec4899, var(--accent-primary));
-  background-size: 300% 300%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  z-index: -1;
-  animation: gradient-shift 4s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 .tutorial-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 0 20px var(--accent-glow);
-  border-color: transparent; /* let the ::after border show */
-}
-
-.tutorial-card:hover::before {
-  left: 200%;
-}
-
-.tutorial-card:hover::after {
-  opacity: 1;
+  border-color: var(--text-primary);
+  transform: translateY(-4px);
 }
 
 .card-header {
@@ -78,35 +25,40 @@
 }
 
 .card-category {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--accent-primary);
-  background: rgba(59, 130, 246, 0.1);
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--bg-main);
+  background: var(--text-primary);
   padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-full);
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
 
 .card-date {
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
 .card-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
-  line-height: 1.4;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
   transition: color var(--transition-fast);
 }
 
 .tutorial-card:hover .card-title {
-  color: var(--accent-primary);
+  color: var(--color-twilight-blue);
 }
 
 .card-description {
+  font-family: var(--font-primary);
   font-size: 0.95rem;
   color: var(--text-secondary);
   line-height: 1.6;
@@ -126,7 +78,7 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-primary);
   font-weight: 500;
 }
@@ -135,11 +87,11 @@
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--accent-secondary), var(--accent-primary));
+  background: var(--text-primary);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  color: var(--bg-main);
   font-size: 0.7rem;
   font-weight: 700;
 }
@@ -153,7 +105,7 @@
   display: flex;
   align-items: center;
   gap: 0.3rem;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
 }
 
@@ -164,12 +116,12 @@
   display: flex;
   align-items: center;
   gap: 0.2rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--accent-primary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
   opacity: 0;
   transform: translateX(-10px);
-  transition: all var(--transition-normal);
+  transition: all var(--transition-fast);
 }
 
 .tutorial-card:hover .card-meta {
