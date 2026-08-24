@@ -6,6 +6,22 @@ import './TutorialCard.css';
 const TutorialCard = ({ id, slug, title, description, category, readTime, views, date, author, tags, index = 0 }) => {
   const navigate = useNavigate();
 
+  // Memisahkan kata terakhir dari title untuk diberi gaya cursive
+  const formatTitle = (text) => {
+    if (!text) return null;
+    const words = text.split(' ');
+    if (words.length <= 1) return text;
+    
+    const lastWord = words.pop();
+    const restOfTitle = words.join(' ');
+    
+    return (
+      <>
+        {restOfTitle} <span className="card-title-cursive">{lastWord}</span>
+      </>
+    );
+  };
+
   return (
     <div 
       className="tutorial-card reveal" 
@@ -17,7 +33,7 @@ const TutorialCard = ({ id, slug, title, description, category, readTime, views,
         <span className="card-date">{date}</span>
       </div>
       
-      <h2 className="card-title">{title}</h2>
+      <h2 className="card-title">{formatTitle(title)}</h2>
       <p className="card-description">{description}</p>
       
       {tags && tags.length > 0 && (

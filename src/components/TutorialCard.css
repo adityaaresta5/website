@@ -44,15 +44,20 @@
 }
 
 .card-title {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 900;
-  text-transform: uppercase;
+  font-family: var(--font-primary);
+  font-size: 1.8rem;
+  font-weight: 500;
   color: var(--text-primary);
   margin-bottom: 0.75rem;
   line-height: 1.1;
   letter-spacing: -0.01em;
   transition: color var(--transition-fast);
+}
+
+.card-title-cursive {
+  font-family: var(--font-cursive);
+  font-size: 1.4em; /* slightly larger relative to the primary font */
+  font-weight: 400;
 }
 
 .tutorial-card:hover .card-title {

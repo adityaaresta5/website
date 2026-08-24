@@ -23,7 +23,7 @@
 
   /* Global mapping (Air Dark Atmospheric) */
   --bg-main: #000000; /* Fallback */
-  --bg-surface: rgba(27, 27, 27, 0.4);
+  --bg-surface: rgba(15, 15, 15, 0.6);
   --bg-surface-hover: rgba(255, 255, 255, 0.1);
   --text-primary: var(--color-whiteout);
   --text-secondary: var(--color-haze);
@@ -45,7 +45,7 @@
 }
 
 [data-theme='light'] {
-  --bg-surface: rgba(255, 255, 255, 0.4);
+  --bg-surface: rgba(255, 255, 255, 0.6);
   --bg-surface-hover: rgba(0, 0, 0, 0.05);
   --text-primary: var(--color-ink);
   --text-secondary: var(--color-black-void);
@@ -67,7 +67,7 @@ body {
   font-family: var(--font-primary);
   font-weight: 500;
   background-color: var(--bg-main);
-  background-image: url('https://images.unsplash.com/photo-1499346030926-9a72daac6c63?q=80&w=2070&auto=format&fit=crop');
+  background-image: url('https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?q=80&w=2070&auto=format&fit=crop');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -84,13 +84,13 @@ body::before {
   content: '';
   position: fixed;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.6) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.85) 100%);
   z-index: -1;
   pointer-events: none;
 }
 
 [data-theme='light'] body::before {
-  background: linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.7) 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.85) 100%);
 }
 
 h1, h2, h3, h4, h5, h6 {
