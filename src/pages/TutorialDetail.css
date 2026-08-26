@@ -136,31 +136,64 @@
   font-size: 1.125rem;
 }
 
-/* Reset inline styles from pasted content strictly on typography elements to preserve code blocks */
-.markdown-content p *,
-.markdown-content h1 *,
-.markdown-content h2 *,
-.markdown-content h3 *,
-.markdown-content h4 *,
-.markdown-content li * {
+/* Strip unwanted background colors and force inheritance on text colors */
+.markdown-content *:not(code):not(pre):not(a):not(.mac-window):not(.mac-header):not(.mac-btn):not(.code-block):not(table):not(thead):not(tbody):not(tr):not(th):not(td) {
+  background-color: transparent !important;
+  color: inherit !important;
   font-family: inherit !important;
 }
 
-/* Only reset font-size on spans to prevent messing up header sizes */
-.markdown-content p span,
-.markdown-content li span {
-  font-size: inherit !important;
+/* Ensure headings maintain their sizes despite the * selector */
+.markdown-content h1, .markdown-content h1 * { font-size: 2.5rem !important; }
+.markdown-content h2, .markdown-content h2 * { font-size: 2rem !important; }
+.markdown-content h3, .markdown-content h3 * { font-size: 1.5rem !important; }
+
+/* Table Styling */
+.markdown-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 1rem;
+  background: var(--bg-surface);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--radius-cards);
+  overflow: hidden;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Strip unwanted background colors and force inheritance on text colors, 
-   except for code blocks and links */
-.markdown-content p :not(code):not(a),
-.markdown-content li :not(code):not(a),
-.markdown-content h1 :not(code):not(a),
-.markdown-content h2 :not(code):not(a),
-.markdown-content h3 :not(code):not(a) {
-  background-color: transparent !important;
-  color: inherit !important;
+.markdown-content thead tr {
+  background-color: var(--bg-surface-hover);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.markdown-content th,
+.markdown-content td {
+  padding: 1rem 1.5rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.markdown-content th {
+  font-weight: 600;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+}
+
+.markdown-content tbody tr:last-child th,
+.markdown-content tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown-content tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+}
+
+[data-theme='light'] .markdown-content tbody tr:hover {
+  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .markdown-content ul {
