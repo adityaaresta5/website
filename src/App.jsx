@@ -13,10 +13,20 @@ function ScrollRevealWrapper() {
   useScrollReveal();
   
   React.useEffect(() => {
+    let ticking = false;
+
     const handleScroll = () => {
-      // Set CSS variable for parallax background
-      document.body.style.setProperty('--scroll-y', `${window.scrollY}px`);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          document.body.style.setProperty('--scroll-y', `${window.scrollY}px`);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
+    
+    // Call once to set initial state
+    handleScroll();
     
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
