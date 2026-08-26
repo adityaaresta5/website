@@ -256,6 +256,13 @@ const TutorialDetail = () => {
     }
   }, [tutorial]);
 
+  useEffect(() => {
+    document.body.classList.add('no-parallax');
+    return () => {
+      document.body.classList.remove('no-parallax');
+    };
+  }, []);
+
   if (loading || authLoading) {
     return <div className="main-content" style={{textAlign: 'center', padding: '5rem 0'}}>Loading tutorial...</div>;
   }

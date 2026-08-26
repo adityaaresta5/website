@@ -84,6 +84,11 @@ body {
   background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop'); /* Beautiful Sunrise/Morning for Light Mode */
 }
 
+/* Override for pages that do not want parallax */
+body.no-parallax {
+  background-position: center center !important;
+}
+
 /* Dimmer overlay for text readability */
 body::before {
   content: '';
