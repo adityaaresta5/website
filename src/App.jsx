@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './pages/Home';
 import TutorialDetail from './pages/TutorialDetail';
@@ -8,6 +8,7 @@ import AdminDashboard from './pages/AdminDashboard';
 import AdminEditor from './pages/AdminEditor';
 import { ThemeProvider } from './context/ThemeContext';
 import { useScrollReveal } from './hooks/useScrollReveal';
+import StarryBackground from './components/StarryBackground';
 
 function ScrollRevealWrapper() {
   useScrollReveal();
@@ -40,7 +41,8 @@ function App() {
 
   return (
     <ThemeProvider>
-      <Router basename={basePath}>
+      <Router>
+        <StarryBackground />
         <ScrollRevealWrapper />
         <div className="app-container">
           <Header />

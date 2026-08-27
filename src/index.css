@@ -22,7 +22,7 @@
   --radius-full: 9999px;
 
   /* Global mapping (Air Dark Atmospheric) */
-  --bg-main: #000000; /* Fallback */
+  --bg-main: #0f172a; /* Nice dark background, not plain black */
   --bg-surface: rgba(15, 15, 15, 0.6);
   --bg-surface-hover: rgba(255, 255, 255, 0.1);
   --text-primary: var(--color-whiteout);
@@ -45,7 +45,7 @@
 }
 
 [data-theme='light'] {
-  --bg-main: var(--color-whiteout);
+  --bg-main: #f8fafc; /* Comfortable white, not too bright */
   --bg-surface: rgba(255, 255, 255, 0.6);
   --bg-surface-hover: rgba(0, 0, 0, 0.05);
   --text-primary: var(--color-ink);
@@ -68,40 +68,19 @@ body {
   font-family: var(--font-primary);
   font-weight: 500;
   background-color: var(--bg-main);
-  background-image: url('https://images.unsplash.com/photo-1495616811223-4d98c6e9c869?q=80&w=2070&auto=format&fit=crop'); /* Beautiful Sunset for Dark Mode */
-  background-size: cover;
-  background-position: center calc(var(--scroll-y, 0px) * -0.3);
-  background-attachment: fixed;
   color: var(--text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  transition: color var(--transition-normal);
+  transition: background-color var(--transition-normal), color var(--transition-normal);
 }
 
 [data-theme='light'] body {
-  background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop'); /* Beautiful Sunrise/Morning for Light Mode */
+  /* Removed image */
 }
 
-/* Override for pages that do not want parallax */
-body.no-parallax {
-  background-position: center center !important;
-}
-
-/* Dimmer overlay for text readability */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.85) 100%);
-  z-index: -1;
-  pointer-events: none;
-}
-
-[data-theme='light'] body::before {
-  background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.75) 100%);
-}
+/* Removed dimmer overlay */
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-primary);
