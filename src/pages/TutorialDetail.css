@@ -243,13 +243,21 @@
 
 .markdown-content blockquote {
   border-left: 2px solid var(--text-primary);
-  background: var(--bg-surface);
+  background: var(--bg-surface) !important;
   padding: 1rem 1.5rem;
   margin: 1.5rem 0;
   border-radius: 0 var(--radius-inputs) var(--radius-inputs) 0;
-  color: var(--text-primary);
-  font-family: var(--font-cursive);
-  font-size: 1.25rem;
+  color: var(--text-secondary) !important;
+  font-size: 0.95rem;
+}
+
+.markdown-content blockquote p {
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+}
+
+.markdown-content blockquote p:last-child {
+  margin-bottom: 0;
 }
 
 .markdown-content code:not(.code-block code) {
